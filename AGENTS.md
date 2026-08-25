@@ -2,7 +2,7 @@
 
 ## Cursor Cloud specific instructions
 
-This repo is a single static **Next.js 15 / React 19** personal portfolio site (package `sofiane-azogagh-portfolio`). There is no backend, database, or auxiliary service — the dev server is the only process needed to work end to end.
+This repo is a single static **Next.js 15 / React 19** personal portfolio site (package `aftab201-portfolio`). There is no backend, database, or auxiliary service — the dev server is the only process needed to work end to end.
 
 ### Services
 

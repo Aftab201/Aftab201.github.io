@@ -18,16 +18,18 @@ interface Publication {
   title: string;
   authors: string[];
   venue: string;
-  venueUrl?: string;
+  venueUrl: string | null;
   year: number;
   status: string;
   tags: string[];
   pdf: string | null;
-  github?: string | null;
-  gitlab?: string | null;
+  github: string | null;
+  gitlab: string | null;
   bibtex: string | null;
   award: string | null;
 }
+
+const publicationData = publications as Publication[];
 
 const STATUS_LABELS: Record<string, string> = {
   "under-review": "Under review",
@@ -39,8 +41,14 @@ function AuthorList({ authors }: { authors: string[] }) {
   return (
     <p className="text-sm text-zinc-600 dark:text-zinc-400">
       {authors.map((author, i) => (
-        <span key={author}>
-          <span className={author === "Sofiane Azogagh" ? "font-semibold text-zinc-800 dark:text-zinc-200" : ""}>
+        <span key={`${author}-${i}`}>
+          <span
+            className={
+              author === " Aftab Akram"
+                ? "font-semibold text-zinc-800 dark:text-zinc-200"
+                : ""
+            }
+          >
             {author}
           </span>
           {i < authors.length - 1 && ", "}
@@ -56,6 +64,7 @@ function PublicationCard({ pub }: { pub: Publication }) {
 
   function copyBibtex() {
     if (!pub.bibtex) return;
+
     navigator.clipboard.writeText(pub.bibtex).then(() => {
       setCopied(true);
       setTimeout(() => setCopied(false), 2000);
@@ -70,11 +79,13 @@ function PublicationCard({ pub }: { pub: Publication }) {
         <span className="text-xs font-semibold font-mono px-2 py-0.5 rounded-md bg-zinc-100 text-zinc-600 dark:bg-zinc-800 dark:text-zinc-300">
           {pub.year}
         </span>
+
         {statusLabel && (
           <span className="text-xs font-medium px-2 py-0.5 rounded-md bg-amber-50 text-amber-700 border border-amber-200 dark:bg-amber-900/30 dark:text-amber-300 dark:border-amber-800">
             {statusLabel}
           </span>
         )}
+
         {pub.award && (
           <span className="inline-flex items-center gap-1 text-xs font-semibold px-2 py-0.5 rounded-md bg-gradient-to-r from-amber-100 to-yellow-50 text-amber-800 border border-amber-300 dark:from-amber-900/40 dark:to-amber-900/20 dark:text-amber-300 dark:border-amber-700">
             <AwardIcon className="w-3.5 h-3.5" />
@@ -91,20 +102,20 @@ function PublicationCard({ pub }: { pub: Publication }) {
 
       {/* Skip the venue line when it would just repeat the status badge */}
       {pub.venue.toLowerCase() !== statusLabel?.toLowerCase() && (
-      <p className="text-sm text-zinc-500 dark:text-zinc-500 mt-1.5">
-        {pub.venueUrl ? (
-          <a
-            href={pub.venueUrl}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="hover:text-accent-600 dark:hover:text-accent-400 underline decoration-zinc-300 dark:decoration-zinc-700 underline-offset-4"
-          >
-            {pub.venue}
-          </a>
-        ) : (
-          pub.venue
-        )}
-      </p>
+        <p className="text-sm text-zinc-500 dark:text-zinc-500 mt-1.5">
+          {pub.venueUrl ? (
+            <a
+              href={pub.venueUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="hover:text-accent-600 dark:hover:text-accent-400 underline decoration-zinc-300 dark:decoration-zinc-700 underline-offset-4"
+            >
+              {pub.venue}
+            </a>
+          ) : (
+            pub.venue
+          )}
+        </p>
       )}
 
       <div className="flex flex-wrap items-center gap-2 mt-4">
@@ -118,6 +129,7 @@ function PublicationCard({ pub }: { pub: Publication }) {
             <PdfIcon /> PDF
           </a>
         )}
+
         {pub.github && (
           <a
             href={pub.github}
@@ -128,6 +140,7 @@ function PublicationCard({ pub }: { pub: Publication }) {
             <GitHubIcon className="w-4 h-4" /> Code
           </a>
         )}
+
         {pub.gitlab && (
           <a
             href={pub.gitlab}
@@ -138,6 +151,7 @@ function PublicationCard({ pub }: { pub: Publication }) {
             <GitLabIcon className="w-4 h-4" /> Code
           </a>
         )}
+
         {pub.bibtex && (
           <button
             onClick={() => setShowBibtex(!showBibtex)}
@@ -154,13 +168,18 @@ function PublicationCard({ pub }: { pub: Publication }) {
           <pre className="text-xs font-mono leading-relaxed bg-zinc-50 dark:bg-night border border-zinc-200 dark:border-zinc-800 rounded-xl p-4 pr-14 overflow-x-auto text-zinc-700 dark:text-zinc-300">
             {pub.bibtex}
           </pre>
+
           <button
             onClick={copyBibtex}
             title="Copy to clipboard"
             aria-label="Copy BibTeX to clipboard"
             className="absolute top-3 right-3 p-2 rounded-lg bg-white dark:bg-zinc-800 border border-zinc-200 dark:border-zinc-700 text-zinc-500 hover:text-accent-600 dark:text-zinc-400 dark:hover:text-accent-300 transition-colors cursor-pointer"
           >
-            {copied ? <CheckIcon className="w-4 h-4 text-emerald-500" /> : <CopyIcon />}
+            {copied ? (
+              <CheckIcon className="w-4 h-4 text-emerald-500" />
+            ) : (
+              <CopyIcon />
+            )}
           </button>
         </div>
       )}
@@ -173,9 +192,19 @@ export default function Publications() {
 
   const filtered = useMemo(() => {
     const q = query.trim().toLowerCase();
-    if (!q) return publications as Publication[];
-    return (publications as Publication[]).filter((pub) =>
-      [pub.title, pub.venue, String(pub.year), ...pub.authors, ...pub.tags]
+
+    if (!q) {
+      return publicationData;
+    }
+
+    return publicationData.filter((pub) =>
+      [
+        pub.title,
+        pub.venue,
+        String(pub.year),
+        ...pub.authors,
+        ...pub.tags,
+      ]
         .join(" ")
         .toLowerCase()
         .includes(q)
@@ -186,6 +215,7 @@ export default function Publications() {
     <div>
       <div className="relative mb-8 max-w-md">
         <SearchIcon className="absolute left-3.5 top-1/2 -translate-y-1/2 w-4 h-4 text-zinc-400" />
+
         <input
           type="search"
           value={query}

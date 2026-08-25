@@ -1,10 +1,12 @@
 #!/usr/bin/env bash
-# Publie le portfolio sur GitHub Pages (build local + push → déploiement automatique).
+# Publish the portfolio to GitHub Pages (local build + push → automatic deployment).
 #
 # Usage:
-#   ./deploy.sh                      # message de commit par défaut
-#   ./deploy.sh "Mise à jour talks"  # message personnalisé
-#   ./deploy.sh --skip-build         # push sans rebuild (déconseillé)
+#   ./deploy.sh
+#   ./deploy.sh "Update talks"
+#   ./deploy.sh --skip-build
+#
+#   --skip-build skips the local build and pushes directly (not recommended).
 
 set -euo pipefail
 
@@ -16,9 +18,11 @@ COMMIT_MSG=""
 
 for arg in "$@"; do
   case "$arg" in
-    --skip-build) SKIP_BUILD=true ;;
+    --skip-build)
+      SKIP_BUILD=true
+      ;;
     -h|--help)
-      echo "Usage: ./deploy.sh [message de commit] [--skip-build]"
+      echo "Usage: ./deploy.sh [commit message] [--skip-build]"
       exit 0
       ;;
     *)
@@ -33,74 +37,83 @@ if [[ -z "$COMMIT_MSG" ]]; then
   COMMIT_MSG="Update site ($(date +%Y-%m-%d))"
 fi
 
-echo "▶ Portfolio — déploiement"
-echo "  Dossier : $SCRIPT_DIR"
+echo "▶ Aftab Portfolio — deployment"
+echo "  Directory : $SCRIPT_DIR"
 echo ""
 
-# ── Dépendances ──────────────────────────────────────────────────────────────
+# ── Dependencies ──────────────────────────────────────────────────────────────
 if [[ ! -d node_modules ]]; then
-  echo "▶ Installation des dépendances (npm install)…"
+  echo "▶ Installing dependencies (npm install)…"
   npm install
 else
-  echo "▶ Vérification des dépendances (npm ci)…"
+  echo "▶ Checking dependencies (npm ci)…"
   npm ci
 fi
+
 echo ""
 
 # ── Build ────────────────────────────────────────────────────────────────────
 if [[ "$SKIP_BUILD" == true ]]; then
-  echo "⚠ Build ignoré (--skip-build)"
+  echo "⚠ Build skipped (--skip-build)"
 else
-  echo "▶ Build du site (npm run build)…"
+  echo "▶ Building site (npm run build)…"
   npm run build
-  echo "✓ Build réussi"
+  echo "✓ Build successful"
 fi
+
 echo ""
 
-# ── Git ────────────────────────────────────────────────────────────────────────
+# ── Git ───────────────────────────────────────────────────────────────────────
 if [[ -z "$(git status --porcelain)" ]]; then
-  echo "ℹ Aucun changement détecté — rien à publier."
+  echo "ℹ No changes detected — nothing to publish."
   exit 0
 fi
 
-echo "▶ Changements détectés :"
+echo "▶ Changes detected:"
 git status --short
 echo ""
 
 BRANCH="$(git branch --show-current)"
+
 if [[ "$BRANCH" != "main" ]]; then
-  echo "✗ Erreur : tu es sur la branche « $BRANCH ». Passe sur main avant de publier."
+  echo "✗ Error: you are on branch « $BRANCH »."
+  echo "  Switch to main before publishing:"
   echo "  git checkout main"
   exit 1
 fi
 
-echo "▶ Commit : $COMMIT_MSG"
+echo "▶ Commit: $COMMIT_MSG"
+
 git add -A
 git commit -m "$COMMIT_MSG"
+
 echo ""
 
-echo "▶ Push vers origin/main…"
+echo "▶ Pushing to origin/main…"
+
 git push origin main
+
 echo ""
 
-# ── Suivi du déploiement ─────────────────────────────────────────────────────
-REPO_URL="https://github.com/sofianeazogagh/sofianeazogagh.github.io"
-SITE_URL="https://sofianeazogagh.github.io"
+# ── Deployment tracking ──────────────────────────────────────────────────────
+REPO_URL="https://github.com/Aftab201/Aftab201.github.io"
+SITE_URL="https://aftab201.github.io"
 
-echo "✓ Code poussé — GitHub Actions va déployer le site."
+echo "✓ Code pushed — GitHub Actions will deploy the site."
 echo ""
-echo "  Site      : $SITE_URL"
-echo "  Actions   : $REPO_URL/actions"
+echo "  Site    : $SITE_URL"
+echo "  Actions : $REPO_URL/actions"
 echo ""
 
 if command -v gh >/dev/null 2>&1; then
-  echo "▶ Suivi du déploiement (Ctrl+C pour quitter)…"
-  if gh run watch --repo sofianeazogagh/sofianeazogagh.github.io 2>/dev/null; then
+  echo "▶ Following deployment (Ctrl+C to exit)…"
+
+  if gh run watch --repo Aftab201/Aftab201.github.io 2>/dev/null; then
     echo ""
-    echo "✓ Déploiement terminé → $SITE_URL"
+    echo "✓ Deployment completed → $SITE_URL"
   else
-    echo "  (Lance « gh auth login » pour suivre le déploiement en direct.)"
+    echo "  (Run « gh auth login » to follow the deployment live.)"
   fi
 else
-  echo "  Astuce : installe « gh » (GitHub CLI) pour suivre le déploiement en direct."
+  echo "  Tip: install GitHub CLI (gh) to follow the deployment live."
 fi

@@ -4,7 +4,7 @@ import { getAllPosts, formatDate } from "@/lib/blog";
 import SectionHeading from "@/components/SectionHeading";
 
 export const metadata: Metadata = {
-  title: "Blog — Sofiane Azogagh",
+  title: "Blog — Aftab Akram",
   description: "Notes on cryptography, homomorphic encryption, and privacy-preserving machine learning.",
 };
 

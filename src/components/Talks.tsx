@@ -1,14 +1,24 @@
 import talks from "@content/talks.json";
 import { richText } from "@/lib/richText";
-import { SlidesIcon, PosterIcon, PdfIcon, LocationIcon } from "./Icons";
+import {
+  SlidesIcon,
+  PosterIcon,
+  PdfIcon,
+  LocationIcon,
+} from "./Icons";
 
 export default function Talks() {
   // Group chronologically, newest year first (data can stay unordered)
-  const years = [...new Set(talks.map((t) => t.year))].sort((a, b) => b - a);
+  const years = [...new Set(talks.map((t) => t.year))].sort(
+    (a, b) => b - a
+  );
 
   return (
     <div className="relative">
-      <div className="absolute left-[6px] top-2 bottom-2 w-[3px] rounded-full bg-zinc-200 dark:bg-zinc-800" aria-hidden />
+      <div
+        className="absolute left-[6px] top-2 bottom-2 w-[3px] rounded-full bg-zinc-200 dark:bg-zinc-800"
+        aria-hidden
+      />
 
       <div className="space-y-10">
         {years.map((year) => (
@@ -17,7 +27,10 @@ export default function Talks() {
               className="absolute left-0 top-1.5 w-[15px] h-[15px] rounded-full bg-accent-500 ring-4 ring-accent-100 dark:ring-accent-900/50"
               aria-hidden
             />
-            <p className="text-sm font-mono font-semibold text-accent-600 dark:text-accent-400 mb-3">{year}</p>
+
+            <p className="text-sm font-mono font-semibold text-accent-600 dark:text-accent-400 mb-3">
+              {year}
+            </p>
 
             <div className="space-y-3">
               {talks
@@ -39,35 +52,59 @@ export default function Talks() {
                                 : "bg-violet-50 text-violet-700 dark:bg-violet-900/30 dark:text-violet-300"
                             }`}
                           >
-                            {talk.type === "poster" ? <PosterIcon className="w-3 h-3" /> : <SlidesIcon className="w-3 h-3" />}
-                            {talk.type === "talk" ? "Talk" : talk.type === "3MT" ? "3MT" : "Poster"}
+                            {talk.type === "poster" ? (
+                              <PosterIcon className="w-3 h-3" />
+                            ) : (
+                              <SlidesIcon className="w-3 h-3" />
+                            )}
+
+                            {talk.type === "talk"
+                              ? "Talk"
+                              : talk.type === "3MT"
+                              ? "3MT"
+                              : "Poster"}
                           </span>
-                          {"award" in talk && talk.award && (
-                            <span className="inline-flex items-center gap-1 text-[0.7rem] font-semibold px-2 py-0.5 rounded-md bg-yellow-50 text-yellow-700 dark:bg-yellow-900/30 dark:text-yellow-300">
-                              🏆 {talk.award}
-                            </span>
-                          )}
-                          <span className="text-xs text-zinc-500 dark:text-zinc-400">{richText(talk.event)}</span>
+
+                          {"award" in talk &&
+                            typeof talk.award === "string" &&
+                            talk.award && (
+                              <span className="inline-flex items-center gap-1 text-[0.7rem] font-semibold px-2 py-0.5 rounded-md bg-yellow-50 text-yellow-700 dark:bg-yellow-900/30 dark:text-yellow-300">
+                                🏆 {talk.award}
+                              </span>
+                            )}
+
+                          <span className="text-xs text-zinc-500 dark:text-zinc-400">
+                            {richText(talk.event)}
+                          </span>
                         </div>
-                        {"location" in talk && talk.location && (
-                          <p className="flex items-center gap-1 text-xs text-zinc-400 dark:text-zinc-500 mb-1">
-                            <LocationIcon className="w-3 h-3 shrink-0" />
-                            {talk.location}
-                          </p>
-                        )}
-                        <h3 className="font-medium text-[0.95rem] leading-snug">{talk.title}</h3>
+
+                        {"location" in talk &&
+                          typeof talk.location === "string" &&
+                          talk.location && (
+                            <p className="flex items-center gap-1 text-xs text-zinc-400 dark:text-zinc-500 mb-1">
+                              <LocationIcon className="w-3 h-3 shrink-0" />
+                              {talk.location}
+                            </p>
+                          )}
+
+                        <h3 className="font-medium text-[0.95rem] leading-snug">
+                          {talk.title}
+                        </h3>
                       </div>
-                      {"file" in talk && talk.file && (
-                        <a
-                          href={talk.file}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="shrink-0 inline-flex items-center gap-1.5 text-sm font-medium px-3 py-1.5 rounded-lg border border-zinc-300 dark:border-zinc-700 text-zinc-700 dark:text-zinc-300 hover:border-accent-400 hover:text-accent-700 dark:hover:text-accent-300 transition-colors"
-                        >
-                          <PdfIcon />
-                          {talk.type === "poster" ? "Poster" : "Slides"}
-                        </a>
-                      )}
+
+                      {"file" in talk &&
+                        typeof talk.file === "string" &&
+                        talk.file && (
+                          <a
+                            href={talk.file}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="shrink-0 inline-flex items-center gap-1.5 text-sm font-medium px-3 py-1.5 rounded-lg border border-zinc-300 dark:border-zinc-700 text-zinc-700 dark:text-zinc-300 hover:border-accent-400 hover:text-accent-700 dark:hover:text-accent-300 transition-colors"
+                          >
+                            <PdfIcon />
+                            {talk.type === "poster" ? "Poster" : "Slides"}
+                          </a>
+                        )}
                     </div>
                   </div>
                 ))}
