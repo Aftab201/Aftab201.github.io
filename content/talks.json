@@ -1,0 +1,40 @@
+[
+  {
+    "title": "Privacy-Preserving and Fairness-Aware Secure Aggregation in Federated Learning",
+    "type": "talk",
+    "event": "Privacy in Statistical Databases (PSD) 2026",
+    "location": "Cádiz, Spain",
+    "year": 2026
+  },
+  {
+    "title": "Privacy-Preserving Federated Learning",
+    "type": "talk",
+    "event": "Scientific Council Annual Workshop, EURECOM",
+    "location": "France",
+    "year": 2025
+  },
+  {
+  "title": "Designing a Cryptographic Suites Scanner for Network Security Protocols",
+  "type": "talk",
+  "event": "REDOCS",
+  "location": "Marseille, France",
+  "year": 2025,
+  "file": "/slides/REDOCS_presentation.pdf"
+ },
+  {
+  "title": "SAAFL: Secure Aggregation for Label-Aware Federated Learning",
+  "type": "talk",
+  "event": "IFIP SEC 2025 — 40th International Conference on ICT Systems Security and Privacy Protection",
+  "location": "Maribor, Slovenia",
+  "year": 2025,
+  "file": "/slides/saaflslides.pdf"
+ },
+  {
+  "title": "Robust Blockchain-Based Federated Learning",
+  "type": "talk",
+  "event": "ICISSP 2025 — 11th International Conference on Information Systems Security and Privacy",
+  "location": "Porto, Portugal",
+  "year": 2025,
+  "file": "/slides/blockchain_slides.pdf"
+ }
+]

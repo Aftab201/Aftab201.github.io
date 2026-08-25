@@ -1,0 +1,129 @@
+[
+  {
+    "id": "hide-and-forget",
+    "title": "Privacy-Preserving Federated Unlearning",
+    "authors": [
+      "Aftab Akram",
+      "Ferran Alborch",
+      "Clémentine Gritti",
+      "Melek Önen"
+    ],
+    "venue": "Manuscript under review at AsiaCCS 2027",
+    "venueUrl": null,
+    "year": 2026,
+    "status": "under-review",
+    "tags": [
+      "Federated Unlearning",
+      "Secure Aggregation",
+      "Machine Unlearning",
+      "Privacy-Preserving Machine Learning"
+    ],
+    "pdf": null,
+    "github": null,
+    "bibtex": null,
+    "award": null
+  },
+  {
+    "id": "fairness-aware-secure-aggregation",
+    "title": "Privacy-Preserving and Fairness-Aware Secure Aggregation in Federated Learning",
+    "authors": [
+      "Tonia El Bacha",
+      "Aftab Akram",
+      "Ibtissam Harrouche",
+      "Melek Önen"
+    ],
+    "venue": "Privacy in Statistical Databases (PSD) 2026, September 2026, Cádiz, Spain",
+    "venueUrl": null,
+    "year": 2026,
+    "status": "accepted",
+    "tags": [
+      "Federated Learning",
+      "Secure Aggregation",
+      "Fairness",
+      "Differential Privacy",
+      "Privacy-Preserving Machine Learning"
+    ],
+    "pdf": null,
+    "github": "https://github.com/Aftab201/SaFer_Fair_FL",
+    "bibtex": null,
+    "award": null
+  },
+  {
+    "id": "saafl",
+    "title": "SAAFL: Secure Aggregation for Label-Aware Federated Learning",
+    "authors": [
+      "Aftab Akram",
+      "Harry N. H. Pham",
+      "Melek Önen",
+      "Clémentine Gritti"
+    ],
+    "venue": "IFIP SEC 2025 — 40th International Conference on ICT Systems Security and Privacy Protection, 21–23 May 2025, Maribor, Slovenia",
+    "venueUrl": null,
+    "year": 2025,
+    "status": "published",
+    "tags": [
+      "Federated Learning",
+      "Secure Aggregation",
+      "Non-IID Data",
+      "Privacy-Preserving Machine Learning"
+    ],
+    "pdf": "/pdfs/saafl.pdf",
+    "github": "https://github.com/Aftab201/SAAFL",
+    "bibtex": null,
+    "award": null
+  },
+  {
+    "id": "robust-blockchain-federated-learning",
+    "title": "Robust Blockchain-Based Federated Learning",
+    "authors": [
+      "Aftab Akram",
+      "Clémentine Gritti",
+      "Mohd Hazali Mohamed Halip",
+      "Nur Diyana Kamarudin",
+      "Marini Mansor",
+      "Syarifah Bahiyah Rahayu",
+      "Melek Önen"
+    ],
+    "venue": "ICISSP 2025 — 11th International Conference on Information Systems Security and Privacy, 20–22 February 2025, Porto, Portugal",
+    "venueUrl": null,
+    "year": 2025,
+    "status": "published",
+    "tags": [
+      "Federated Learning",
+      "Blockchain",
+      "Secure Aggregation",
+      "Byzantine Robustness",
+      "Trusted Execution Environments"
+    ],
+    "pdf": "/pdfs/robust_blockchain_based_FL.pdf",
+    "github": "https://github.com/Aftab201/BlockFL",
+    "bibtex": null,
+    "award": null
+  },
+  {
+    "id": "privacy-preserving-dnn-inference",
+    "title": "Privacy-Preserving Inference for Deep Neural Networks: Optimizing Homomorphic Encryption for Efficient and Secure Classification",
+    "authors": [
+      "Aftab Akram",
+      "Fawad Khan",
+      "Shahzaib Tahir",
+      "Asif Iqbal",
+      "Syed Aziz Shah",
+      "Abdullah Baz"
+    ],
+    "venue": "IEEE Access, Volume 12, pp. 15684–15695",
+    "venueUrl": null,
+    "year": 2024,
+    "status": "published",
+    "tags": [
+      "Homomorphic Encryption",
+      "Privacy-Preserving Machine Learning",
+      "Deep Neural Networks",
+      "Secure Inference"
+    ],
+    "pdf": null,
+    "github": null,
+    "bibtex": null,
+    "award": null
+  }
+]

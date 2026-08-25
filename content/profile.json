@@ -1,0 +1,30 @@
+{
+  "name": "Aftab Akram",
+  "title": "PhD Researcher",
+  "affiliation": "Sorbonne University / EURECOM, France",
+  "location": "Sophia Antipolis, France",
+  "tagline": "Privacy-Preserving Machine Learning · Applied Cryptography · Federated Learning",
+  "about": [
+    "I am a PhD researcher working on privacy-preserving machine learning and applied cryptography. My research focuses on designing trustworthy and privacy-preserving federated learning systems using cryptographic techniques.",
+    "My research interests include secure aggregation, homomorphic encryption, secure multiparty computation, differential privacy, federated unlearning, machine unlearning, adversarial robustness, and blockchain-based approaches for trustworthy federated learning."
+  ],
+  "interests": [
+    "Privacy-Preserving Machine Learning",
+    "Federated Learning",
+    "Applied Cryptography",
+    "Secure Aggregation",
+    "Homomorphic Encryption",
+    "Secure Multiparty Computation",
+    "Federated and Machine Unlearning",
+    "Differential Privacy",
+    "Adversarial Robustness",
+    "Blockchain Security",
+    "Post-Quantum Cryptography"
+  ],
+  "social": {
+    "email": "aftab.akram@eurecom.fr",
+    "github": "https://github.com/Aftab201",
+    "linkedin": "https://www.linkedin.com/in/aftab-akram/",
+    "scholar": "https://scholar.google.com/citations?user=-WiOUPQAAAAJ&hl=en"
+  }
+}

@@ -1,0 +1,38 @@
+[
+  {
+    "period": "2023 – 2026",
+    "role": "Teaching and Research Assistant",
+    "institution": "EURECOM",
+    "description": "In my role as a Teaching and Research Assistant at EURECOM, I mentor and supervise Master's students on semester and final-year projects in cybersecurity, privacy, and machine learning. I guide students throughout project design, implementation, and evaluation, monitor their research progress, and contribute to the assessment of technical reports, presentations, and project outcomes.",
+    "courses": [
+      {
+        "name": "Blockchain-Based Federated Learning",
+        "code": "2023–2024",
+        "url": null,
+        "duty": "Supervised M. Aziz Sghaier and Thomas Du.",
+        "level": "Master in Computer Science"
+      },
+      {
+        "name": "Blockchain-Based Federated Learning",
+        "code": "2024",
+        "url": null,
+        "duty": "Supervised Pierre Dontenville and Guillaume Blanc.",
+        "level": "Master in Computer Science"
+      },
+      {
+        "name": "Data Heterogeneity-Based Federated Learning",
+        "code": "2024–2025",
+        "url": null,
+        "duty": "Supervised Malek Sfaxi and Harry Pham.",
+        "level": "Master in Computer Science"
+      },
+      {
+        "name": "Fairness-Aware Federated Learning",
+        "code": "2025–2026",
+        "url": null,
+        "duty": "Supervised Tonia El Bacha.",
+        "level": "Master in Computer Science"
+      }
+    ]
+  }
+]

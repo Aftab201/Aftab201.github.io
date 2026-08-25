@@ -1,0 +1,449 @@
+@import "tailwindcss";
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+/* Fonts */
+@theme inline {
+  --font-sans: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
+  --font-display: var(--font-fraunces), Georgia, serif;
+  --font-mono: var(--font-jetbrains), ui-monospace, monospace;
+}
+
+@theme {
+  /* ================================
+     BLUE / CYBER ACCENT
+     ================================ */
+
+  --color-accent-50: #eff6ff;
+  --color-accent-100: #dbeafe;
+  --color-accent-200: #bfdbfe;
+  --color-accent-300: #93c5fd;
+  --color-accent-400: #60a5fa;
+  --color-accent-500: #3b82f6;
+  --color-accent-600: #2563eb;
+  --color-accent-700: #1d4ed8;
+  --color-accent-800: #1e40af;
+  --color-accent-900: #172554;
+
+  /* ================================
+     DARK NAVY NEUTRALS
+     ================================ */
+
+  --color-zinc-50: #f8fafc;
+  --color-zinc-100: #f1f5f9;
+  --color-zinc-200: #e2e8f0;
+  --color-zinc-300: #cbd5e1;
+  --color-zinc-400: #94a3b8;
+  --color-zinc-500: #64748b;
+  --color-zinc-600: #475569;
+  --color-zinc-700: #334155;
+  --color-zinc-800: #1e293b;
+  --color-zinc-900: #0f172a;
+  --color-zinc-950: #020617;
+
+  --color-paper: #f8fafc;
+  --color-ink: #0f172a;
+
+  /* Main dark colors */
+  --color-night: #020617;
+  --color-night-soft: #0b1120;
+
+  /* ================================
+     ANIMATIONS
+     ================================ */
+
+  --animate-fade-up: fade-up 0.7s
+    cubic-bezier(0.16, 1, 0.3, 1) both;
+
+  @keyframes fade-up {
+    from {
+      opacity: 0;
+      transform: translateY(24px);
+    }
+
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  /* Moving background gradient */
+  @keyframes gradient-move {
+    0% {
+      background-position: 0% 50%;
+    }
+
+    50% {
+      background-position: 100% 50%;
+    }
+
+    100% {
+      background-position: 0% 50%;
+    }
+  }
+
+  /* Floating background lights */
+  @keyframes float-orb-1 {
+    0% {
+      transform: translate(0, 0) scale(1);
+    }
+
+    50% {
+      transform: translate(10vw, 15vh) scale(1.2);
+    }
+
+    100% {
+      transform: translate(0, 0) scale(1);
+    }
+  }
+
+  @keyframes float-orb-2 {
+    0% {
+      transform: translate(0, 0) scale(1);
+    }
+
+    50% {
+      transform: translate(-15vw, 10vh) scale(1.3);
+    }
+
+    100% {
+      transform: translate(0, 0) scale(1);
+    }
+  }
+
+  @keyframes float-orb-3 {
+    0% {
+      transform: translate(0, 0) scale(1);
+    }
+
+    50% {
+      transform: translate(8vw, -12vh) scale(1.15);
+    }
+
+    100% {
+      transform: translate(0, 0) scale(1);
+    }
+  }
+
+  /* Soft glow */
+  @keyframes glow-pulse {
+    0%,
+    100% {
+      opacity: 0.5;
+    }
+
+    50% {
+      opacity: 1;
+    }
+  }
+}
+
+/* ================================
+   GLOBAL SETTINGS
+   ================================ */
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 5rem;
+}
+
+body {
+  @apply bg-paper text-ink antialiased;
+
+  position: relative;
+  min-height: 100vh;
+  overflow-x: hidden;
+
+  background: #f8fafc;
+}
+
+/* ================================
+   LIGHT MODE
+   ================================ */
+
+body::before,
+body::after {
+  content: "";
+  position: fixed;
+  width: 500px;
+  height: 500px;
+  border-radius: 9999px;
+  pointer-events: none;
+  z-index: -1;
+  filter: blur(100px);
+  opacity: 0.25;
+}
+
+body::before {
+  top: -200px;
+  left: -150px;
+
+  background: #3b82f6;
+
+  animation:
+    float-orb-1 18s ease-in-out infinite;
+}
+
+body::after {
+  bottom: -250px;
+  right: -150px;
+
+  background: #8b5cf6;
+
+  animation:
+    float-orb-2 22s ease-in-out infinite;
+}
+
+/* ================================
+   DARK MODE
+   ================================ */
+
+.dark body {
+  @apply bg-night text-zinc-200;
+
+  background:
+    linear-gradient(
+      120deg,
+      #020617,
+      #071a35,
+      #0b1120,
+      #11102a,
+      #020617
+    );
+
+  background-size: 300% 300%;
+
+  animation:
+    gradient-move 20s ease infinite;
+}
+
+/* First floating blue light */
+
+.dark body::before {
+  content: "";
+
+  position: fixed;
+
+  width: 650px;
+  height: 650px;
+
+  top: -250px;
+  left: -200px;
+
+  border-radius: 50%;
+
+  background:
+    radial-gradient(
+      circle,
+      rgba(37, 99, 235, 0.40) 0%,
+      rgba(37, 99, 235, 0.12) 40%,
+      transparent 70%
+    );
+
+  filter: blur(70px);
+
+  opacity: 0.8;
+
+  animation:
+    float-orb-1 20s ease-in-out infinite;
+
+  pointer-events: none;
+}
+
+/* Second floating purple/blue light */
+
+.dark body::after {
+  content: "";
+
+  position: fixed;
+
+  width: 700px;
+  height: 700px;
+
+  bottom: -300px;
+  right: -250px;
+
+  border-radius: 50%;
+
+  background:
+    radial-gradient(
+      circle,
+      rgba(99, 102, 241, 0.35) 0%,
+      rgba(59, 130, 246, 0.10) 45%,
+      transparent 70%
+    );
+
+  filter: blur(80px);
+
+  opacity: 0.8;
+
+  animation:
+    float-orb-2 25s ease-in-out infinite;
+
+  pointer-events: none;
+}
+
+/* ================================
+   REVEAL ON SCROLL
+   ================================ */
+
+.reveal {
+  opacity: 0;
+
+  transform:
+    translateY(30px);
+
+  transition:
+    opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1),
+    transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.reveal.is-visible {
+  opacity: 1;
+
+  transform:
+    translateY(0);
+}
+
+/* ================================
+   INTERACTIVE HOVER EFFECTS
+   ================================ */
+
+a,
+button {
+  transition:
+    color 0.25s ease,
+    background-color 0.25s ease,
+    border-color 0.25s ease,
+    transform 0.25s ease,
+    box-shadow 0.25s ease;
+}
+
+a:hover,
+button:hover {
+  transform:
+    translateY(-2px);
+}
+
+/* ================================
+   CARD ANIMATION
+   ================================ */
+
+.hover-card {
+  transition:
+    transform 0.35s ease,
+    box-shadow 0.35s ease,
+    border-color 0.35s ease;
+}
+
+.hover-card:hover {
+  transform:
+    translateY(-6px);
+
+  box-shadow:
+    0 20px 50px rgba(37, 99, 235, 0.15);
+}
+
+/* ================================
+   ACCENT GLOW
+   ================================ */
+
+.accent-glow {
+  transition:
+    transform 0.3s ease,
+    box-shadow 0.3s ease;
+}
+
+.accent-glow:hover {
+  transform:
+    translateY(-4px);
+
+  box-shadow:
+    0 10px 40px
+    rgba(37, 99, 235, 0.30);
+}
+
+/* ================================
+   PULSING ELEMENT
+   ================================ */
+
+.pulse-glow {
+  animation:
+    glow-pulse 3s ease-in-out infinite;
+}
+
+/* ================================
+   BLOG PROSE
+   ================================ */
+
+.prose-blog {
+  @apply text-[1.05rem] leading-relaxed;
+}
+
+.prose-blog h2 {
+  @apply font-display text-2xl font-semibold mt-10 mb-4;
+}
+
+.prose-blog h3 {
+  @apply font-display text-xl font-semibold mt-8 mb-3;
+}
+
+.prose-blog p {
+  @apply my-4;
+}
+
+.prose-blog a {
+  @apply text-accent-600 dark:text-accent-400 underline decoration-accent-300 dark:decoration-accent-700 underline-offset-4 hover:decoration-2;
+}
+
+.prose-blog ul,
+.prose-blog ol {
+  @apply my-4 pl-6 space-y-2;
+}
+
+.prose-blog ul {
+  @apply list-disc;
+}
+
+.prose-blog ol {
+  @apply list-decimal;
+}
+
+.prose-blog blockquote {
+  @apply border-l-4 border-accent-300 dark:border-accent-700 pl-4 italic my-6 text-zinc-600 dark:text-zinc-400;
+}
+
+.prose-blog pre {
+  @apply bg-zinc-900 dark:bg-night-soft text-zinc-100 rounded-xl p-4 my-6 overflow-x-auto text-sm font-mono border border-zinc-800;
+}
+
+.prose-blog :not(pre) > code {
+  @apply font-mono text-[0.9em] bg-zinc-100 dark:bg-zinc-800 rounded px-1.5 py-0.5;
+}
+
+.prose-blog em {
+  @apply italic;
+}
+
+/* ================================
+   ACCESSIBILITY
+   ================================ */
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+
+  .reveal {
+    opacity: 1;
+    transform: none;
+  }
+}
