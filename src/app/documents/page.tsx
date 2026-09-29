@@ -8,6 +8,14 @@ const documents = [
     icon: "📄",
   },
   {
+    title: "PhD Thesis",
+    description:
+      "PhD thesis on trustworthy and privacy-preserving federated learning using cryptographic techniques.",
+    file: "/documents/Aftab-Akram-PhD-Thesis.pdf",
+    category: "Doctoral Thesis",
+    icon: "🎓",
+  },
+  {
     title: "Master's Degree",
     description:
       "Master's degree certificate and academic qualification.",
